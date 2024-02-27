@@ -1,0 +1,66 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+  <div class="features">
+    <h1>Здравствуйте, администратор роллердрома {{ user.username }}!</h1>
+    <a href="{% url 'new_abon' %}" class="custom-button-dark">Назначить абонемент для клиента</a>
+    <a href="{% url 'home' %}" class="custom-button-dark">Выйти</a>
+    <h1>Данные о пользователях:</h1>
+
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th, td {
+        border: 1px solid #363636;
+        text-align: center;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #525252;
+        color: #ede06d;
+
+      }
+    </style>
+
+        {% if params_list and aboniment_list %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Цель</th>
+                        <th>Абонемент</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in user_profiles %}
+                        <tr>
+                            <td>{{ profile.user.username }}</td>
+                            <td>
+                                {% for params in params_list %}
+                                    {% if params.user_profile == profile %}
+                                        {{ params.target }}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if profile.aboniment %}
+                                    {{ profile.aboniment.title }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Данные о параметрах или абонементах отсутствуют.</p>
+        {% endif %}
+
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

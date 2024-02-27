@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Мой прогресс {% endblock %}
+
+{% block content %}
+    <div class="features">
+        <form method="post">
+            {% csrf_token %}
+            <h2> Определите свою цель: </h2>
+            {{ form.target }}
+            <button class="btn btn-success custom-button-dark" type="submit">Сохранить цель</button>
+        </form>
+
+        <form method="post">
+            {% csrf_token %}
+            <h2> Внесите свой прогресс ниже </h2>
+            {{ form.time }}
+            {{ form.distance }}
+            {{ form.speed }}
+            {{ form.calories }}
+            <button class="btn btn-success custom-button-dark" type="submit">Сохранить изменения</button>
+        </form>
+
+        <a href="{% url 'profile' %}" class="custom-button-dark">Вернуться в аккаунт</a>
+    </div>
+{% endblock %}

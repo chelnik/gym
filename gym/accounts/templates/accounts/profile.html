@@ -1,0 +1,42 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Личный кабинет {% endblock %}
+
+{% block content %}
+<div class="features">
+    <div class="button-row">
+        <a href="{% url 'newparams' %}" class="custom-button-dark">Редактировать данные</a>
+        <a href="{% url 'abon' %}" class="custom-button-dark">Абонементы</a>
+        <a href="{% url 'new_abon' %}" class="custom-button-dark">Выбрать абонемент</a>
+        <a href="{% url 'home' %}" class="custom-button-dark">Выйти из аккаунта</a>
+    </div>
+      <h2>Рады тебя видеть, {{ user.username }}!</h2>
+        <form>
+            <h2>Твои параметры:</h2>
+            {% for param in params %}
+                <p>Время: {{ param.time }}</p>
+                <p>Дистанция: {{ param.distance }}</p>
+                <p>Скорость: {{ param.speed }}</p>
+                <p>Калории: {{ param.calories }}</p>
+            {% endfor %}
+
+        </form>
+
+        <form>
+            <h2>Ваши цели:</h2>
+              {% if params %}
+                {% for param in params %}
+                  <h2>{{ param.target }}</h2>
+                {% endfor %}
+              {% else %}
+                <h2>Вы не указали цель</h2>
+                <a href="{% url 'newparams' %}" class="custom-button-dark">Указать цель</a>
+              {% endif %}
+        </form>
+
+        <form>
+              {% if aboniment %}
+                <h2>Ваш тариф: {{ aboniment.title }}</h2>
+                <p>Приобретен {{user_profile.buy_day}} за {{aboniment.price}} рублей </p>
+              {% else %}
+                <h2>У вас нет абонемента</h2

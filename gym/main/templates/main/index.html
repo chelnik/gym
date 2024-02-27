@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="features">
+        <h2> Самое большое фитнес-пространство в Белгороде. Оно представляет собой новое поколение клубов и занимает общую площадь в 8 000 кв. м. </h2>
+        <a href="{% url 'signup' %}"><button class="btn custom-button-dark"> Стать частью GYMFAMILY </button></a>
+        <p>Чтобы узнать тарифы на абонементы, нужно войти в личный кабинет.</p>
+        <a href="{% url 'login' %}" class="custom-button-dark">Узнать цены на абонементы</a>
+            <div class="gym-container">
+                <h1> Залы </h1>
+                <div class="gym-form">
+                    <img src="{% static 'main/img/sila.jpg' %}" alt="тренажеры">
+                    <h2>Зал с тренажерами</h2>
+                    <p>Кроссовер, пулловер, Смитт, тяги нижнего и верхнего блока</p>
+                </div>
+
+                <div class="gym-form">
+                    <img src="{% static 'main/img/silagan.jpg' %}" alt="снаряжение">
+                    <h2>Зона силовых тренировок со снаряжением</h2>
+                    <p>Гантели (1-25 кг), штанги, блины, резинки</p>
+                </div>
+
+                <div class="gym-form">
+                    <img src="{% static 'main/img/main.jpg' %}" alt="главный зал">
+                    <h2>Зал общих тренировок</h2>
+                    <p>Мячи, скакалки, гантели (1-3 кг), коврики, блоки для йоги, роллеры для прокатки</p>
+                </div>
+
+                <div class="gym-form">
+                    <img src="{% static 'main/img/kardio.jpg' %}" alt="кардио">
+                    <h2>Зона кардио</h2>
+                    <p>Беговая дорожка, велосипедный тренажер, эллипс</p>
+                </div>
+
+
+                <h1> Тренеры </h1>
+                {% for el in coach %}
+                <div class='universal-form'>
+                    <h3>{{ el.fio }}</h3>
+                    <h4>{{ el.obj_title }}</h4>
+                </div>
+                {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

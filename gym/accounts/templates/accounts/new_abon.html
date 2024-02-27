@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Выбрать абонемент {% endblock %}
+
+{% block content %}
+    <div class="features">
+        <form method="post">
+            {% csrf_token %}
+
+            {% if request.user.is_superuser %}
+                {# Администратор: отобразить поле выбора пользователя #}
+                <h2>Выберите пользователя: </h2>
+                {{ form.user }}
+            {% endif %}
+
+            <h2> Выберите абонемент для роллердрома: </h2>
+            {{ form.aboniment }}
+
+            <button class="btn btn-success custom-button-dark" type="submit">Сохранить новый абонемент</button>
+        </form>
+
+        <a href="{% url 'profile' %}" class="custom-button-dark">Вернуться в аккаунт</a>
+    </div>
+{% endblock %}

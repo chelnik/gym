@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block title %} Роллердром {% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>РОЛЛЕРДРОМ</h1>
+        <p>Приходите к нам на роллердром и наслаждайтесь скоростью и адреналином! У нас есть все необходимое оборудование и профессиональные инструкторы, которые помогут вам освоиться на роликах.</p>
+        <div class="gym-container">
+            {% for el in roller %}
+            <div class='universal-form'>
+                <h3>{{ el.title }}</h3>
+                <button class="btn universal-button">{{ el.price }} рублей</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a href="{% url 'profile' %}" class="custom-button-dark">Вернуться в аккаунт</a>
+{% endblock %}
